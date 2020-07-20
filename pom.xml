@@ -20,6 +20,7 @@
     <!-- 模块说明：这里声明多个子模块 -->
     <modules>
         <module>first</module>
+        <module>service</module>
     </modules>
 
 
