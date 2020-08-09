@@ -1,10 +1,9 @@
 package com.example.first.controller;
 
+import com.example.first.bean.User;
 import com.example.service.IHelloService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class HelloController {
@@ -13,7 +12,15 @@ public class HelloController {
     private IHelloService helloService;
 
     @GetMapping("/hello")
-    public String sayHello(){
+    public String sayHello() {
         return helloService.sayHello();
     }
+
+    @PostMapping("/getUser")
+    public User getUser(@RequestBody User user) {
+        String address = user.getAddress();
+        user.setAddress("欢迎来到" + address);
+        return user;
+    }
+
 }
