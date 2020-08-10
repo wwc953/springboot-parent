@@ -23,4 +23,11 @@ public class HelloController {
         return user;
     }
 
+    @PostMapping("/getUser2")
+    public User getUser2(@RequestBody User user, @RequestParam(value = "haha", required = false) String haha) {
+        String address = user.getAddress();
+        user.setAddress("欢迎来到" + address + haha);
+        return user;
+    }
+
 }

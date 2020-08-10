@@ -75,11 +75,12 @@ class FirstApplicationTests {
 
     @Test
     public void testPost() throws Exception {
-
-        String asString = objectMapper.writeValueAsString(new User(1000L, "wangsan", "China"));
+        User user = new User(1000L, "wangsan", "China");
+        String asString = objectMapper.writeValueAsString(user);
 
         mvc.perform(MockMvcRequestBuilders
                 .post("/getUser")
+//                .param("user",asString)
                 .content(asString)
                 .accept(MediaType.APPLICATION_JSON)//属于请求头,客户端希望接受的数据类型
                 .contentType(MediaType.APPLICATION_JSON))//属于实体头,(客户端|服务器）发送的实体数据的数据类型
@@ -89,6 +90,30 @@ class FirstApplicationTests {
                 .andExpect(MockMvcResultMatchers.jsonPath("$.name").exists())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(100L));
 
+
+//        {
+//            "status":200,
+//                "data":{"id":"2","name":"测试"}
+//        }
+        //$.data.name
+    }
+
+    @Test
+    public void testPost2() throws Exception {
+        User user = new User(1000L, "wangsan", "China");
+        String asString = objectMapper.writeValueAsString(user);
+
+        mvc.perform(MockMvcRequestBuilders
+                .post("/getUser2")
+                .param("haha","6666")
+                .content(asString)
+                .accept(MediaType.APPLICATION_JSON)//属于请求头,客户端希望接受的数据类型
+                .contentType(MediaType.APPLICATION_JSON))//属于实体头,(客户端|服务器）发送的实体数据的数据类型
+                //.andReturn().getResponse().setCharacterEncoding("UTF-8")
+                .andExpect(status().isOk())
+                //$: 返回结果
+                .andExpect(MockMvcResultMatchers.jsonPath("$.name").exists())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(100L));
 
     }
 
