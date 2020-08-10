@@ -117,6 +117,22 @@ class FirstApplicationTests {
 
     }
 
+    @Test
+    public void testmap() throws Exception {
+
+        mvc.perform(MockMvcRequestBuilders
+                .post("/getMapper")
+                .param("name","我是hahah")
+                .accept(MediaType.APPLICATION_JSON)//属于请求头,客户端希望接受的数据类型
+                .contentType(MediaType.APPLICATION_JSON))//属于实体头,(客户端|服务器）发送的实体数据的数据类型
+                //.andReturn().getResponse().setCharacterEncoding("UTF-8")
+                .andExpect(status().isOk())
+                //$: 返回结果
+                .andExpect(MockMvcResultMatchers.jsonPath("$.name").exists())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(100L));
+
+    }
+
 
 
 }
