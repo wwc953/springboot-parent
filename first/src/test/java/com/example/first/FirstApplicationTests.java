@@ -16,6 +16,8 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
+import java.nio.charset.StandardCharsets;
+
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -130,6 +132,24 @@ class FirstApplicationTests {
                 //$: 返回结果
                 .andExpect(MockMvcResultMatchers.jsonPath("$.name").exists())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(100L));
+
+    }
+
+    @Test
+    public void testmap2() throws Exception {
+
+        String contentAsString = mvc.perform(MockMvcRequestBuilders
+                .post("/getMapper")
+                .param("name", "我是hahah")
+                .accept(MediaType.APPLICATION_JSON)//属于请求头,客户端希望接受的数据类型
+                .contentType(MediaType.APPLICATION_JSON))//属于实体头,(客户端|服务器）发送的实体数据的数据类型
+                .andExpect(status().isOk())
+                //$: 返回结果
+                .andExpect(MockMvcResultMatchers.jsonPath("$.name").exists())
+//                .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(100L))
+                .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
+        System.out.println("======="+contentAsString);
+//        assertThat()
 
     }
 
