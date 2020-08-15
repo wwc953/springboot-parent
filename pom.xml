@@ -19,7 +19,7 @@
 
     <!-- 模块说明：这里声明多个子模块 -->
     <modules>
-        <module>first</module>
+        <module>web</module>
         <module>service</module>
     </modules>
 

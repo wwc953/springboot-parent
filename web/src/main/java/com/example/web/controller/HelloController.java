@@ -1,6 +1,6 @@
-package com.example.first.controller;
+package com.example.web.controller;
 
-import com.example.first.bean.User;
+import com.example.web.bean.User;
 import com.example.service.IHelloService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

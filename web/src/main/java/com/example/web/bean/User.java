@@ -1,11 +1,13 @@
-package com.example.first.bean;
+package com.example.web.bean;
+
+import java.io.Serializable;
 
 /**
  * @Description: TODO
  * @author: wangwc
  * @date: 2020/8/9 21:44
  */
-public class User {
+public class User implements Serializable {
     private Long id;
     private String name;
     private String address;
