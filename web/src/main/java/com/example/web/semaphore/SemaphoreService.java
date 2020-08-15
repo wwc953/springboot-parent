@@ -1,5 +1,7 @@
 package com.example.web.semaphore;
 
+import com.example.web.thread.MyThread;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.Semaphore;

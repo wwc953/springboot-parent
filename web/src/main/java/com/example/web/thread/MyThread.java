@@ -1,4 +1,6 @@
-package com.example.web.semaphore;
+package com.example.web.thread;
+
+import com.example.web.semaphore.SemaphoreService;
 
 /**
  * @Description: TODO

@@ -1,4 +1,4 @@
-package com.example.web.task;
+package com.example.web.thread;
 
 import java.util.concurrent.CountDownLatch;
 

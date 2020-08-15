@@ -1,4 +1,4 @@
-package com.example.web.task;
+package com.example.web.threadfactory;
 
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.atomic.AtomicInteger;

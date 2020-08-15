@@ -1,17 +1,15 @@
 package com.example.web.controller;
 
-import com.example.web.task.GroupThreadFactory;
-import com.example.web.task.UserTask;
+import com.example.web.threadfactory.GroupThreadFactory;
+import com.example.web.thread.UserTask;
 import org.apache.tomcat.util.threads.ThreadPoolExecutor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.annotation.Resources;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.TimeUnit;
 
 /**
