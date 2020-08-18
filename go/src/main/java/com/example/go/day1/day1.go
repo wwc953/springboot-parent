@@ -23,4 +23,7 @@ func main() {
 	//默认""
 	var str string
 	fmt.Println(str)
+
+	mystr := "abc"
+	fmt.Println("hello, world", mystr)
 }
