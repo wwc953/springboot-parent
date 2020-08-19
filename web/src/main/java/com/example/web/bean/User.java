@@ -7,6 +7,9 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @Description: User对象
@@ -54,5 +57,18 @@ public class User implements Serializable {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public static void main(String[] args) {
+        List<Long> arrayList = new ArrayList<>();
+
+        arrayList.add(100000L);
+
+        List<String> collect = arrayList.stream().map(id -> String.valueOf(id)).collect(Collectors.toList());
+
+        arrayList.stream().map(String::valueOf).collect(Collectors.toList());
+
+
+
     }
 }
