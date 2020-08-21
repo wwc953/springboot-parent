@@ -21,25 +21,31 @@ import java.util.concurrent.TimeUnit;
 @RequestMapping("/user")
 public class UserController {
 
-    private ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(5, 10,
+    private int corePoolSize = Runtime.getRuntime().availableProcessors();
+
+    private ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(corePoolSize, corePoolSize << 1,
             300L, TimeUnit.SECONDS,
-            new ArrayBlockingQueue<>(10),
+            new ArrayBlockingQueue<>(16),
             new GroupThreadFactory(),
             new ThreadPoolExecutor.CallerRunsPolicy());
 
     @GetMapping("/more/{count}")
     public String more(@PathVariable Integer count) throws InterruptedException {
+        System.out.println("========== corePoolSize：" + corePoolSize);
         if (count == null || count <= 0) {
             count = 2;
         }
         CountDownLatch countDownLatch = new CountDownLatch(count);
-        System.out.println("-----开始" + count);
+        long start = System.currentTimeMillis();
+        System.out.println("-----开始" + start);
         for (int i = 0; i < count; i++) {
             threadPoolExecutor.execute(new UserTask(countDownLatch));
         }
         countDownLatch.await();
-        System.out.println("-----结束");
-        return "success: " + count;
+        long end = System.currentTimeMillis();
+        long time = end - start;
+        System.out.println("-----结束" + time);
+        return "success: " + time;
     }
 
 }
