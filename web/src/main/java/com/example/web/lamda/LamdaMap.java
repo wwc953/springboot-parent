@@ -8,11 +8,11 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
- * @Description: TODO
+ * @Description: TODO Lamda Map
  * @author: wangwc
  * @date: 2020/8/22 9:17
  */
-public class LamdaTest {
+public class LamdaMap {
 
     /**
      * lambda的基本写法
