@@ -24,7 +24,9 @@ public class UserTask implements Runnable {
 
     @Override
     public void run() {
-        long time = 1000L * i;
+//        long time = 1000L * i;
+        long time = 1000L;
+
         try {
             Thread.sleep(time);
         } catch (InterruptedException e) {
