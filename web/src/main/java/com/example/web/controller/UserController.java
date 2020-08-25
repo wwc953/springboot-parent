@@ -33,12 +33,12 @@ public class UserController {
             new GroupThreadFactory(),
             new ThreadPoolExecutor.CallerRunsPolicy());
 
-    @GetMapping("/more/{count}")
-    public String more(@PathVariable Integer count) throws InterruptedException {
+    @GetMapping("/more/{count}/{xxx}")
+    public String more(@PathVariable Integer count,@PathVariable String xxx) throws InterruptedException {
         System.out.println("========== corePoolSize：" + corePoolSize);
-        if (count == null || count <= 0) {
-            count = 2;
-        }
+//        if (count == null || count <= 0) {
+//            count = 2;
+//        }
         CountDownLatch countDownLatch = new CountDownLatch(count);
         long start = System.currentTimeMillis();
         System.out.println("-----countDownLatch开始" + start);
