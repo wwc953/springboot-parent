@@ -20,8 +20,7 @@ public class LamdaFilter {
      */
     public static void testFilter1() {
         Integer[] sixNums = {1, 2, 3, 4, 5, 6};
-        Integer[] evens =
-                Stream.of(sixNums).filter(n -> n % 2 == 0).toArray(Integer[]::new);
+        Integer[] evens = Stream.of(sixNums).filter(n -> n % 2 == 0).toArray(Integer[]::new);
         System.out.println(Arrays.toString(evens));
     }
 
