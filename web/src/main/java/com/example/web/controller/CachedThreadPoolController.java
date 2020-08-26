@@ -33,7 +33,7 @@ public class CachedThreadPoolController {
         long start = System.currentTimeMillis();
         //批量任务 不限时
         List<Future<String>> futures = cachedThreadPool.invokeAll(taskList);
-        long end1 = start - System.currentTimeMillis();
+        long end1 = System.currentTimeMillis() - start;
 
 //        for (int i = 0; i < futures.size(); i++) {
 //            System.out.println(futures.get(i).get());
@@ -47,21 +47,30 @@ public class CachedThreadPoolController {
 //            }
 //        });
 
-        long end2 = start - System.currentTimeMillis();
+        long end2 = System.currentTimeMillis() - start;
 
         System.out.println("任务执行时间：" + end1);
         System.out.println("任务结果展示时间：" + end2);
 
 
-        String result = futures.stream().map(v -> {
-            try {
-                return v.get();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return "-9999";
-        }).collect(Collectors.toList()).toString();
-        System.out.println(result);
+//        String result = futures.stream().map(v -> {
+//            try {
+//                return v.get();
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//            return "-9999";
+//        }).collect(Collectors.toList()).toString();
+//        System.out.println(result);
+//
+//        futures.stream().map(v -> {
+//            try {
+//                return v.get();
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//            return "-9999";
+//        }).forEach(System.out::println);
 
         return "success";
     }
