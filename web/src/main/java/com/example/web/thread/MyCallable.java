@@ -9,7 +9,7 @@ import java.util.concurrent.Callable;
  */
 public class MyCallable implements Callable<String> {
 
-    private Integer i;
+    private Integer i = 1;
 
     public MyCallable() {
     }
@@ -20,9 +20,9 @@ public class MyCallable implements Callable<String> {
 
     @Override
     public String call() throws Exception {
-        long time = 1000L * i;
+        long time = 10L * i;
         Thread.sleep(time);
-        System.out.println("------------------" + time);
+        System.out.println(Thread.currentThread().getName() + "------------------" + time);
         return String.valueOf(time);
     }
 }
