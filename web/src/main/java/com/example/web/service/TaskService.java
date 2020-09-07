@@ -15,6 +15,8 @@ public class TaskService {
     @PostConstruct
     public void init() {
         System.out.println("----init");
+        scheduledThreadPoolExecutor.scheduleAtFixedRate(new Task(), 1, 1, TimeUnit.SECONDS);
+
     }
 
     @PreDestroy
