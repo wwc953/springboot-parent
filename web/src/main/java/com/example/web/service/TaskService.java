@@ -7,13 +7,14 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 @Component
 public class TaskService {
     static ScheduledThreadPoolExecutor scheduledThreadPoolExecutor =
-            new ScheduledThreadPoolExecutor(2);
+            new ScheduledThreadPoolExecutor(1);
 
     @Autowired
     IHelloService helloService;
@@ -37,17 +38,17 @@ public class TaskService {
         System.out.println(Thread.currentThread().getName() + "insertData time:" + (System.currentTimeMillis() - begin));
     }
 
-
     @PostConstruct
     public void init() {
         System.out.println("----init");
 //        scheduledThreadPoolExecutor.scheduleAtFixedRate(new Task(), 1, 2, TimeUnit.SECONDS);
 
         //scheduleWithFixedDelay 比如当前一个任务结束的时刻，开始结算间隔时间，如0秒开始执行第一次任务，任务耗时5秒，任务间隔时间3秒，那么第二次任务执行的时间是在第8秒开始。
-        scheduledThreadPoolExecutor.scheduleWithFixedDelay(new Task(), 1, 500, TimeUnit.MILLISECONDS);
+        scheduledThreadPoolExecutor.scheduleWithFixedDelay(new Task(), 0, 500, TimeUnit.MILLISECONDS);
 //        scheduledThreadPoolExecutor.scheduleWithFixedDelay(new Task(), 1, 2, TimeUnit.SECONDS);
 
     }
+
 
     @PreDestroy
     public void destroy() {
