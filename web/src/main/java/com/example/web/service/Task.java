@@ -40,7 +40,7 @@ public class Task implements Runnable {
                 }
 
                 TaskService taskService = (TaskService) SpringUtil.getBean("taskService");
-                taskService.insertData();
+//                taskService.insertData();
             } else {
                 Thread.sleep(1000);
                 System.out.println(Thread.currentThread().getName() + "msg is null,睡眠一秒");
