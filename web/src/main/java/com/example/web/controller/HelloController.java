@@ -4,6 +4,8 @@ import com.example.web.bean.User;
 import com.example.service.IHelloService;
 import com.example.web.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
@@ -13,6 +15,15 @@ public class HelloController {
 
     @Autowired
     private IHelloService helloService;
+
+    @Autowired
+    StringRedisTemplate stringredisTemplate;
+
+    @GetMapping(value = "/send1/{message}")
+    public String send1(@PathVariable String message) {
+        stringredisTemplate.convertAndSend("TextChannel", message);
+        return "send1 success";
+    }
 
     @GetMapping("/task/{msg}")
     public String task(@PathVariable String msg) {

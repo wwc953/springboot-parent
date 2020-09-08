@@ -38,7 +38,7 @@ public class TaskService {
         System.out.println(Thread.currentThread().getName() + "insertData time:" + (System.currentTimeMillis() - begin));
     }
 
-    @PostConstruct
+//    @PostConstruct
     public void init() {
         System.out.println("----init");
 //        scheduledThreadPoolExecutor.scheduleAtFixedRate(new Task(), 1, 2, TimeUnit.SECONDS);
