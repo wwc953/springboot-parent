@@ -17,7 +17,7 @@ public class ListenerServiceAnnotation {
     IHelloService helloService;
 
     @Async("redisTaskPool")
-    @EventListener
+    @EventListener(condition = "#redisEvent.message=='xxx'")
     public void insertData(RedisEvent redisEvent) {
         String planNo = redisEvent.getMessage();
         System.out.println("Annotation接受到RedisEvent事件,message:" + planNo);
