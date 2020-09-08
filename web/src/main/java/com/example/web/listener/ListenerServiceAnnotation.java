@@ -18,6 +18,7 @@ public class ListenerServiceAnnotation {
 
     @Async("redisTaskPool")
     @EventListener(condition = "#redisEvent.message=='xxx'")
+    //@EventListener(condition = "#{arg}.{filde}")//添加过滤条件
     public void insertData(RedisEvent redisEvent) {
         String planNo = redisEvent.getMessage();
         System.out.println("Annotation接受到RedisEvent事件,message:" + planNo);
