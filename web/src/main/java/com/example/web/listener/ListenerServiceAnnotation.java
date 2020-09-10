@@ -46,6 +46,7 @@ public class ListenerServiceAnnotation {
             return helloService.insert3();
         });
         CompletableFuture.allOf(fu1, fu2, fu3, fu4).join();
+
         System.out.println(Thread.currentThread().getName() + "insertData time:" + (System.currentTimeMillis() - begin));
 
         System.out.println(Thread.currentThread().getName() + " --------------end---" + planNo);
