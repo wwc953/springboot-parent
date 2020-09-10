@@ -1,8 +1,7 @@
 package com.example.web.controller;
 
-import com.example.web.listener.RedisEvent;
+import com.example.web.event.RedisEvent;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

@@ -1,10 +1,8 @@
-package com.example.web.listener;
+package com.example.web.event;
 
 import com.example.service.IHelloService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
-import org.springframework.scheduling.annotation.Async;
-import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
 //@Component
