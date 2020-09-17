@@ -6,6 +6,7 @@ import com.example.web.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.data.redis.listener.ChannelTopic;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
@@ -19,11 +20,21 @@ public class HelloController {
     @Autowired
     StringRedisTemplate stringredisTemplate;
 
+    @Autowired
+    ChannelTopic rabbitChannelTopic;
+
     @GetMapping(value = "/send1/{message}")
     public String send1(@PathVariable String message) {
         stringredisTemplate.convertAndSend("TextChannel", message);
         return "send1 success";
     }
+
+    @GetMapping(value = "/sendTopic/{message}")
+    public String sendTopic(@PathVariable String message) {
+        stringredisTemplate.convertAndSend(rabbitChannelTopic.getTopic(), message);
+        return "send1 success";
+    }
+
 
     @GetMapping("/task/{msg}")
     public String task(@PathVariable String msg) {

@@ -3,6 +3,7 @@ package com.example.web.redisPubSub;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
+import org.springframework.data.redis.listener.ChannelTopic;
 import org.springframework.data.redis.listener.PatternTopic;
 import org.springframework.data.redis.listener.RedisMessageListenerContainer;
 import org.springframework.data.redis.listener.adapter.MessageListenerAdapter;
@@ -22,8 +23,14 @@ public class SubConfig {
         container.setConnectionFactory(connectionFactory);
         container.addMessageListener(listenerAdapter, new PatternTopic("TextChannel"));
 //        container.addMessageListener(listenerAdapter, new PatternTopic("kafkaChannel"));
+        container.addMessageListener(listenerAdapter, rabbitChannelTopic());
         //配置要订阅的订阅项
         return container;
+    }
+
+    @Bean
+    public ChannelTopic rabbitChannelTopic(){
+        return new ChannelTopic("rabbitChannel");
     }
 
 }
