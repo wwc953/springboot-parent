@@ -24,17 +24,17 @@ public class Init implements ApplicationListener<ApplicationReadyEvent> {
     public void onApplicationEvent(ApplicationReadyEvent event) {
         for (int i = 1; i <= 5; i++) {
 
-            scheduledThreadPoolExecutor.scheduleWithFixedDelay(new Runnable() {
-                @Override
-                public void run() {
-                    System.out.println(Thread.currentThread().getName() + "------");
-                    try {
-                        TimeUnit.SECONDS.sleep(1);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }, 0, 500, TimeUnit.MILLISECONDS);
+//            scheduledThreadPoolExecutor.scheduleWithFixedDelay(new Runnable() {
+//                @Override
+//                public void run() {
+//                    System.out.println(Thread.currentThread().getName() + "------");
+//                    try {
+//                        TimeUnit.SECONDS.sleep(1);
+//                    } catch (InterruptedException e) {
+//                        e.printStackTrace();
+//                    }
+//                }
+//            }, 0, 500, TimeUnit.MILLISECONDS);
 
         }
     }
