@@ -14,6 +14,11 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>web</name>
 
+    <properties>
+        <redisson.version>3.13.2</redisson.version>
+        <jedis.version>2.9.0</jedis.version>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>com.example</groupId>
@@ -38,6 +43,11 @@
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
             <version>1.2.62</version>
+        </dependency>
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>${jedis.version}</version>
         </dependency>
     </dependencies>
 
