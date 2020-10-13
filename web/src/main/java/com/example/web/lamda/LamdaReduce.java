@@ -1,5 +1,6 @@
 package com.example.web.lamda;
 
+
 import java.util.Arrays;
 
 /**
@@ -23,6 +24,11 @@ public class LamdaReduce {
         strAppendParams(strry, separator);//null
         strAppendParams(strryOne, separator);//?
         strAppendParams(strrytwo, separator);//?,?,?,?
+
+        System.out.println("org.apache.tomcat.util.buf.StringUtils.join: " + org.apache.tomcat.util.buf.StringUtils.join(Arrays.asList(strry), ','));
+        System.out.println("org.apache.tomcat.util.buf.StringUtils.join: " + org.apache.tomcat.util.buf.StringUtils.join(Arrays.asList(strryOne), ','));
+        System.out.println("org.apache.tomcat.util.buf.StringUtils.join: " + org.apache.tomcat.util.buf.StringUtils.join(Arrays.asList(strrytwo), ','));
+
     }
 
     public static void strAppend(String[] args, char separator) {
