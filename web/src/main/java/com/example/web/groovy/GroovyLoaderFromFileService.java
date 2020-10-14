@@ -8,7 +8,9 @@ import org.springframework.stereotype.Component;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Description: TODO 读取Groovy脚本
@@ -25,6 +27,21 @@ public class GroovyLoaderFromFileService {
         Object obj = null;
         try {
             obj = shell.evaluate(new File(filePath));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return obj;
+    }
+
+    public Object parseAndInvokeByGroovyShell(String functionName, Map params) {
+        String filePath = "web/src/main/resources/groovy/" + functionName + ".groovy";
+        Binding binding = new Binding();
+        binding.setProperty("params", params);
+        GroovyShell shell = new GroovyShell(binding);
+        Object obj = null;
+        try {
+            obj = shell.evaluate(new File(filePath));
+            System.out.println("============" + params.get("result"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -67,6 +84,12 @@ public class GroovyLoaderFromFileService {
 //        Object invoke = loader.parseAndInvokeByGroovyShell("helloMethod", params);
 //        Object invoke = loader.parseAndInvokeByGroovyScriptEngine("helloMethod", params);
 //        System.out.println(invoke);
+
+//        GroovyLoaderFromFileService loader = new GroovyLoaderFromFileService();
+//        Map<String, Object> map = new HashMap<>();
+//        map.put("list", params);
+//        Object invoke = loader.parseAndInvokeByGroovyShell("getResultFromMapParam", map);
+//        System.out.println("in: " + invoke);
 
     }
 }
