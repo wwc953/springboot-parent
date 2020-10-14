@@ -52,7 +52,7 @@ public class GroovyLoaderService {
         Script script = shell.parse(scriptText);
         Map<String, String> params = new HashMap<>();
         params.put("key", "111");
-        Object result = script.invokeMethod("hello", params);
+        Object result = script.invokeMethod("helloMethod", params);
         System.out.println(result);
     }
 
