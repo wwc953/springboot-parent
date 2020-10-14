@@ -44,14 +44,27 @@ public class GroovyLoaderService {
         return "def " + functionName + "(Map map){ return map.get(\"key\") }";
     }
 
+    public String createScriptTextFromMap(String functionName) {
+        return "def " + functionName + "(Map map){  map.put(\"result\",map.get(\"key\")+10) }";
+    }
+
     public static void main(String[] args) {
-        String scriptText = "def hello(Map map){ return map.get(\"key\") }";
+//        String scriptText = "def hello(Map map){ return map.get(\"key\") }";
+//        GroovyShell shell = new GroovyShell();
+//        Script script = shell.parse(scriptText);
+//        Map<String, String> params = new HashMap<>();
+//        params.put("key", "111");
+//        Object result = script.invokeMethod("helloMethod", params);
+//        System.out.println(result);
+
+        String scriptText = "def aa(Map map){ map.put(\"result\",map.get(\"key\")+10) }";
         GroovyShell shell = new GroovyShell();
         Script script = shell.parse(scriptText);
         Map<String, String> params = new HashMap<>();
-        params.put("key", "111");
-        Object result = script.invokeMethod("helloMethod", params);
-        System.out.println(result);
+        params.put("key", "99");
+        script.invokeMethod("aa", params);
+        System.out.println(params.get("result"));
+
     }
 
 }
