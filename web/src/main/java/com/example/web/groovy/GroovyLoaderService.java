@@ -40,8 +40,8 @@ public class GroovyLoaderService {
             }
             script = SCRIPT_CACHE.get(functionName);
         }
-        Object obj = script.invokeMethod(functionName, params);
-        return obj;
+        Object result = script.invokeMethod(functionName, params);
+        return result;
     }
 
     public void cleanCache(String functionName) {
