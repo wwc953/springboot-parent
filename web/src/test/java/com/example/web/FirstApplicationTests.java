@@ -32,7 +32,7 @@ class FirstApplicationTests {
     void contextLoads() throws Exception {
 
         //MockMvcRequestBuilders 构建request请求
-        MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.get("/hello")
+        MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.get("/helloMethod")
                 //请求参数的类型
                 .accept(MediaType.APPLICATION_JSON)
                 //请求的参数（可多个）
@@ -45,7 +45,7 @@ class FirstApplicationTests {
         ResultActions resultActions = mvc.perform(requestBuilder)
                 //断言：验证
                 .andExpect(MockMvcResultMatchers.status().isOk())
-                //.andExpect(content().string("hello hhhh"))
+                //.andExpect(content().string("helloMethod hhhh"))
                 .andDo(MockMvcResultHandlers.print());
 
 //        MvcResult mvcResult = resultActions.andReturn();
