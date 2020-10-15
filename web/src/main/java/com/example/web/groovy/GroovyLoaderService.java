@@ -18,6 +18,7 @@ import java.util.concurrent.ConcurrentMap;
 public class GroovyLoaderService {
     private Object lock = new Object();
     private GroovyShell shell = new GroovyShell();
+
     /**
      * JDK7 之前：防止PermGen永久代内存溢出,
      * JDK8 防止Metaspace内存溢出, -XX:MaxMetaspaceSize=256m 最大值
