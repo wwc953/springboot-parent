@@ -17,6 +17,7 @@
     <properties>
         <redisson.version>3.13.2</redisson.version>
         <jedis.version>2.9.0</jedis.version>
+<!--        <jedis.version>3.2.0</jedis.version>-->
     </properties>
 
     <dependencies>
