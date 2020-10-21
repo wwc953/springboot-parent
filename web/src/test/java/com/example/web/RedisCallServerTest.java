@@ -26,7 +26,8 @@ public class RedisCallServerTest {
 
     @Test
     public void jedisClusterCall() {
-        String ip = "192.168.43.196";
+//        String ip = "192.168.43.196";
+        String ip = "192.168.43.240";
         int port = 30001;
 //        int port = 8001;
         HostAndPort hostAndPort = new HostAndPort(ip, port);
@@ -35,6 +36,16 @@ public class RedisCallServerTest {
         System.out.println(eval.toString());
 //        jedisCluster.set("aa", "aa");
 //        jedisCluster.get("aa");
+    }
+
+    @Test
+    public void jedisClusterNodesCall() {
+        String ip = "192.168.43.240";
+        int port = 30001;
+        HostAndPort hostAndPort = new HostAndPort(ip, port);
+        JedisCluster jedisCluster = new JedisCluster(hostAndPort);
+        Object eval = jedisCluster.eval("return redis.call('cluster','nodes')", 0, "");
+        System.out.println(eval.toString());
     }
 
 }
