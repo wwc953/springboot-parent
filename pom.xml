@@ -21,7 +21,6 @@
     <modules>
         <module>web</module>
         <module>service</module>
-        <module>go</module>
     </modules>
 
 
