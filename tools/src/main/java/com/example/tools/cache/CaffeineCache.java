@@ -1,4 +1,4 @@
-package com.example.utilTools.cache;
+package com.example.tools.cache;
 
 import com.github.benmanes.caffeine.cache.Cache;
 import org.springframework.beans.factory.annotation.Autowired;

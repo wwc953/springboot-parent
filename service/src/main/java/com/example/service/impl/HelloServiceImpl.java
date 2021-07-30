@@ -16,7 +16,9 @@ public class HelloServiceImpl implements IHelloService {
     @Override
     public String insert1() {
         System.out.println(Thread.currentThread().getName() + "dao --> insert1 -- beg");
-        if(flag) sleep(5000);
+        if (flag) {
+            sleep(5000);
+        }
         System.out.println(Thread.currentThread().getName() + "dao --> insert1 -- end");
         return "1000";
     }
@@ -24,7 +26,9 @@ public class HelloServiceImpl implements IHelloService {
     @Override
     public String insert2() {
         System.out.println(Thread.currentThread().getName() + "dao --> insert2 --beg");
-        if(flag) sleep(2000);
+        if (flag) {
+            sleep(2000);
+        }
         System.out.println(Thread.currentThread().getName() + "dao --> insert2 --end");
         return "2000";
     }
@@ -32,7 +36,9 @@ public class HelloServiceImpl implements IHelloService {
     @Override
     public String insert3() {
         System.out.println(Thread.currentThread().getName() + "dao --> insert3 -- beg");
-        if(flag) sleep(3000);
+        if (flag) {
+            sleep(3000);
+        }
         System.out.println(Thread.currentThread().getName() + "dao --> insert3 -- end");
         return "3000";
     }
