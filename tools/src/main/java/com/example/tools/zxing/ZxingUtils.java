@@ -17,13 +17,13 @@ import java.util.Map;
 public class ZxingUtils {
 
 
-    public static String getImage(String no) throws WriterException, IOException {
+    public static String getImage(String contents) throws WriterException, IOException {
         Map set = new HashMap<>();
         set.put(EncodeHintType.CHARACTER_SET, "utf-8");
 
         QRCodeWriter qr = new QRCodeWriter();
         //生成二维码
-        BitMatrix encode = qr.encode(no, BarcodeFormat.QR_CODE, 300, 300, set);
+        BitMatrix encode = qr.encode(contents, BarcodeFormat.QR_CODE, 300, 300, set);
         //去除白边
         BitMatrix deleteWhite = deleteWhite(encode);
         ByteArrayOutputStream out = new ByteArrayOutputStream();
