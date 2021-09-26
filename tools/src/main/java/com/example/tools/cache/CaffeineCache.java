@@ -31,8 +31,7 @@ public class CaffeineCache {
     }
 
     public Object getObject(String key) {
-        Object value = cache.getIfPresent(key);
-        return value != null ? value : null;
+        return cache.getIfPresent(key);
     }
 
     public List<Object> getListByKey(String key) {
