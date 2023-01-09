@@ -1,4 +1,4 @@
-package com.example.tools.zklocl2;
+package com.example.tools.zklockCuratorNoWatch;
 
 import javafx.util.Pair;
 import org.apache.curator.RetryPolicy;
@@ -11,6 +11,9 @@ import org.slf4j.LoggerFactory;
 
 import java.util.concurrent.TimeUnit;
 
+/**
+ * 没有watch版本
+ */
 public class ZkDistributedLock {
     /**
      * zookeeper地址
