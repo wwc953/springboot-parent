@@ -3,6 +3,7 @@ package com.example.tools.zkLock;
 import org.apache.zookeeper.*;
 import org.apache.zookeeper.data.Stat;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
 
@@ -54,7 +55,7 @@ public class ZKLock implements Watcher {
             //获取根节点下的所有临时顺序节点，不设置监视器
             List<String> children = zk.getChildren(tmpRootLock, false);
             //对根节点下的所有临时顺序节点进行从小到大排序
-            children.sort(null);
+            Collections.sort(children);
             //判断当前节点是否为最小节点，如果是则获取锁，若不是，则找到自己的前一个节点，监听其存在状态
             int curIndex = children.indexOf(currentLock.substring(currentLock.lastIndexOf("/") + 1));
             if (curIndex != 0) {
