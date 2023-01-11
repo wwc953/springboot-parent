@@ -34,9 +34,9 @@ public class ZookeeperLocker {
     }
 
     // 获取锁
-    public Lock lock(String lockId, long timeout) {
+    public LockEntry lock(String lockId, long timeout) {
         // 创建临时节点
-        Lock lockNode = createLockNode(lockId);
+        LockEntry lockNode = createLockNode(lockId);
         lockNode = tryActiveLock(lockNode);// 尝试激活锁
         if (!lockNode.isActive()) {
             try {
@@ -54,14 +54,14 @@ public class ZookeeperLocker {
     }
 
     // 释放锁
-    public void unlock(Lock lock) {
+    public void unlock(LockEntry lock) {
         if (lock.isActive()) {
             zkClient.delete(lock.getPath());
         }
     }
 
     // 尝试激活锁
-    private Lock tryActiveLock(Lock lockNode) {
+    private LockEntry tryActiveLock(LockEntry lockNode) {
 
         // 获取根节点下面所有的子节点
         List<String> list = zkClient.getChildren(rootPath)
@@ -88,7 +88,7 @@ public class ZookeeperLocker {
                 public void handleDataDeleted(String dataPath) throws Exception {
                     // 事件处理 与心跳 在同一个线程，如果Debug时占用太多时间，将导致本节点被删除，从而影响锁逻辑。
                     System.out.println("节点删除:" + dataPath);
-                    Lock lock = tryActiveLock(lockNode);
+                    LockEntry lock = tryActiveLock(lockNode);
                     synchronized (lockNode) {
                         if (lock.isActive()) {
                             lockNode.notify(); // 释放了
@@ -102,9 +102,9 @@ public class ZookeeperLocker {
     }
 
 
-    public Lock createLockNode(String lockId) {
+    public LockEntry createLockNode(String lockId) {
         String nodePath = zkClient.createEphemeralSequential(rootPath + "/" + lockId, "w");
-        return new Lock(lockId, nodePath);
+        return new LockEntry(lockId, nodePath);
     }
 }
 
@@ -117,7 +117,7 @@ class Test01 {
         for (int i = 0; i < 10; i++) {
             new Thread(() -> {
                 try {
-                    Lock zkLock = zookeeperLock.lock("lvcai", 50000);
+                    LockEntry zkLock = zookeeperLock.lock("lvcai", 50000);
                     TimeUnit.MILLISECONDS.sleep(100);
                     for (int j = 0; j < 10; j++) {
                         num++;
@@ -133,17 +133,17 @@ class Test01 {
 }
 
 
-class Lock {
+class LockEntry {
     private String lockId;
     private String path;
     private boolean active;
 
-    public Lock(String lockId, String path) {
+    public LockEntry(String lockId, String path) {
         this.lockId = lockId;
         this.path = path;
     }
 
-    public Lock() {
+    public LockEntry() {
     }
 
     public String getLockId() {

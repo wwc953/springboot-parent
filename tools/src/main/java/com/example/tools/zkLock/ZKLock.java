@@ -82,12 +82,12 @@ public class ZKLock implements Watcher {
         try {
             //删除创建的节点
             zk.delete(currentLock, -1);
-            List<String> children = zk.getChildren(tmpRootLock, false);
-            if (children.size() == 0) {
-                zk.delete(tmpRootLock, -1);
-                //关闭zookeeper连接
-                zk.close();
-            }
+//            List<String> children = zk.getChildren(tmpRootLock, false);
+//            if (children.size() == 0) {
+//                zk.delete(tmpRootLock, -1);
+//                //关闭zookeeper连接
+//                zk.close();
+//            }
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (KeeperException e) {
@@ -108,22 +108,13 @@ public class ZKLock implements Watcher {
             new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    ZKLock lock = new ZKLock("127.0.0.1:2181", "lock");
-//                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                    ZKLock lock = new ZKLock("124.223.82.36:12181", "hhh");
                     lock.lock();
+                    System.out.println("枷锁成功！！！");
+                    lock.unlock();
                 }
             }).start();
         }
-//        ZKLock lock = new ZKLock("127.0.0.1:2181", "L1");
-//        lock.lock();
-//        Thread.sleep(10000);
-//        ZKLock lock1 = new ZKLock("127.0.0.1:2181", "L2");
-//        lock1.lock();
-//        Thread.sleep(10000);
-//        lock1.unlock();
-//
-//        lock.unlock();
-//        String uu = "";
-        Thread.sleep(10000);
+
     }
 }
